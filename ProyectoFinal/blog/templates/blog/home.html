@@ -59,10 +59,12 @@
                                     <li> <a href="{% url 'home' %}">Home</a> </li>
                                     <li class="active"> <a href="{% url 'album' %}">Albums</a> </li>
                                     <li> <a href="{% url 'about' %}">About</a> </li>
+                                    <li> <a href="{% url 'register'%}">Register</a> </li>
                                     {% if user.is_authenticated %}
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src="{{ user.profile.profile_image.url }}" alt="{{ user.username }}" width="30" height="30" style="border-radius: 50%;">
+                                            {% comment %} <img src="{{ user.profile.profile_image.url }}" alt="{{ user.username }}" width="30" height="30" style="border-radius: 50%;"> {% endcomment %}
+
                                             {{ user.username }}
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -71,7 +73,6 @@
                                             <a href="{% url 'logout' %}">Logout</a>
                                         </div>
                                     </li>
-                                    <li> <a href="{% url 'register'%}">Register</a> </li>
                                     {% else %}
                                     <li> <a href="{% url 'login' %}">Login</a> </li>
                                     {% endif %}

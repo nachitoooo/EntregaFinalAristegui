@@ -1,15 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import *
-from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
-from django.contrib.auth import authenticate
-from .forms import ProfileUpdateForm
-from django.contrib.auth import login
+from .models import Blog, Profile
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login, logout
+from .forms import CustomRegistrationForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
-from .forms import CustomRegistrationForm
-
-
-
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from django.contrib.auth.models import User
 
 def home(request):
     return render(request, 'blog/home.html')
@@ -61,6 +58,7 @@ def register(request):
         form = CustomRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
+            profile = Profile.objects.create(user=user, profile_image=request.FILES['profile_picture'])
             return redirect('home')  
     else:
         form = CustomRegistrationForm()

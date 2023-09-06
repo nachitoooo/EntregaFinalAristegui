@@ -1,10 +1,11 @@
 from django.contrib.auth.forms import UserCreationForm
-from .models import  User, Profile
+from django.contrib.auth.models import User  # Importa User desde django.contrib.auth.models
+from .models import Profile
 from django import forms
-
 
 class CustomRegistrationForm(UserCreationForm):
     profile_picture = forms.ImageField(label='Imagen de Perfil', required=False)
+
     class Meta:
         model = User
         fields = ('username', 'password1', 'password2', 'profile_picture')

@@ -1,12 +1,10 @@
-{% extends 'blog/base.html' %}
-{% load static %}
+{% extends 'base.html' %}
 {% block content %}
-    <div class="container">
-        <h1>Actualizar Perfil</h1>
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ profile_form.as_p }}
-            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-        </form>
-    </div>
+  <h2>Actualizar Perfil</h2>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    <button type="submit">Guardar Cambios</button>
+  </form>
 {% endblock %}
