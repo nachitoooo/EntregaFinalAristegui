@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.contrib.auth.models import User
+from django.contrib import messages
 
 def home(request):
     return render(request, 'blog/home.html')
@@ -45,12 +46,12 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect('home') 
-
+        else:
+            messages.error(request, 'Credenciales inválidas. Por favor, inténtalo de nuevo.')
     else:
         form = AuthenticationForm()
 
     return render(request, 'blog/login.html', {'form': form})
-
 
 
 def register(request):
@@ -58,12 +59,14 @@ def register(request):
         form = CustomRegistrationForm(request.POST, request.FILES)
         if form.is_valid():
             user = form.save()
-            profile = Profile.objects.create(user=user, profile_image=request.FILES['profile_picture'])
-            return redirect('home')  
+            profile, created = Profile.objects.get_or_create(user=user)
+            if 'profile_picture' in request.FILES:
+                profile.profile_image = request.FILES['profile_picture']
+                profile.save()
+            return redirect('home')
     else:
         form = CustomRegistrationForm()
     return render(request, 'blog/registro.html', {'form': form})
-
 
 
 @login_required

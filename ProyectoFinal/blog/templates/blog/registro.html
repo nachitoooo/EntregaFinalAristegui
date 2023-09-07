@@ -9,6 +9,8 @@
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button class="opacity">SUBMIT</button>
+                <p>¿Ya estás registrado? Inicia sesión</p>
+                <li> <a href="{% url 'login' %}">Login</a> </li>
             </form>
         </div>
         <div class="circle circle-two"></div>

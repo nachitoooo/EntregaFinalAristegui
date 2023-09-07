@@ -36,7 +36,6 @@
     <!-- end loader -->
     <!-- header -->
     <header>
-        <!-- header inner -->
         <div class="header">
             <div class="container">
                 <div class="row">
@@ -58,9 +57,18 @@
                                         <li> <a href="blog.html">Blog</a> </li>
                                         <li> <a href="{% url 'about' %}">about</a> </li>
                                         {% if user.is_authenticated %}
-                                        <a href="{% url 'logout' %}">Logout</a>
-                                        {% endif %}
-                                    </ul>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {% if user.profile.profile_image %}
+                                            <img src="{{ user.profile.profile_image.url }}" alt="{{ user.username }}" width="30" height="30" style="border-radius: 50%;">
+                                            {% endif %}
+                                            {{ user.username }}
+                                        </a>
+                                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                                    </li>
+                                    {% else %}
+                                    <li> <a href="{% url 'login' %}">Login</a> </li>
+                                    {% endif %}
                                 </nav>
                             </div>
                         </div>
@@ -76,7 +84,6 @@
             <!-- end header inner -->
         </div>
     </header>
-    <!-- end header -->
 
     <div class="aboutbg">
         <div class="container">
@@ -89,42 +96,48 @@
             </div>
         </div>
     </div>
-    <!-- music-box  -->
     <div class="music-box about">
         <div class="container">
             <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4"> <!-- Agregamos mb-4 para agregar espacio inferior -->
                     <div class="for-box">
-                        <i><img src="{% static 'icon/icon1.png' %}" alt="icon"/></i>
-                        <h3>Ignacio Aristegui</h3>
-                        <p>Me llamo Ignacio Aristegui, tengo 18 años. El año que viene, me mudaré a La Plata en busca de cursar la carrera de ingenieria en sistemas</p>
+                        <img src="{% static 'images/yo.jpg' %}" alt="icon" style="height: 190px; width:190px;" />
+                        <h3>Nombre</h3>
+                        <p>Me llamo Ignacio Aristegui, tengo 18 años. El año que viene, me mudaré a La Plata en busca de cursar la carrera de ingeniería en sistemas</p>
                     </div>
                 </div>
-               z
-                <!-- Agrega más contenido sobre tu organización aquí -->
+                
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="for-box">
+                        <i><img src="{% static 'images/logo.png' %}" alt="icon" style="width:auto; height:auto;"/></i>
+                        <h3>Lo que son los Guns para mí</h3>
+                        <p>Mi banda favorita son los Guns and Roses desde muy chico. Mis álbumes favoritos son Appetite for Destruction y Use your Ilussion. Entre mis canciones favoritas de Appetite for Destruction puedo mencionar patience, it's so easy, nightrain, y mi favorita rocket queen. De use your ilussion mi favorita es Estranged, November Rain, Civil War, entre tantas otras.</p>
+                    </div>
+                </div>
+                
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="for-box">
+                        <i><img src="{% static 'images/pythonlogo.png' %}" alt="icon"/></i>
+                        <h3>¿Por qué decidí estudiar esto?</h3>
+                        <p>Decidí estudiar Python para un cambio de aire, siempre me interesó el desarrollo backend de las páginas web y quise indagar sobre el tema, y me terminó gustando mucho.</p>
+                    </div>
+                </div>
+                
+                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 mb-4">
+                    <div class="for-box">
+                        <i><img src="{% static 'images/Playa-San-Bernardo.jpg' %}" alt="icon"/></i>
+                        <h3>¿De dónde soy?</h3>
+                        <p>Soy de San Bernardo, La Costa, Buenos Aires. Complementando además, quise meterme en el mundo de la tecnología ya que desde chico que me gustó estar mucho tiempo en la computadora, en la escuela técnica ví muy por encima lo que era html, ni llegue a css porque me tuve que cambiar de escuela por problemas familiares.
+                            Sé que ademas voy a poder tener la posibilidad de tener un trabajo remoto, ya qué en La Costa, fuera de temporada, para los estudiantes es practicamente imposible conseguir trabajo.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     
-    <!-- end music-box  -->
 
-    <!-- Agrega más contenido sobre tu organización aquí -->
-
-    <!--  footer -->
-    <footr>
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <!-- Footer content goes here -->
-                </div>
-            </div>
-            <div class="copyright">
-                <p>© 2023 Todos los derechos reservados. <a href="https://html.design/">Plantillas HTML gratuitas</a></p>
-            </div>
-        </div>
-    </footr>
-    <!-- end footer -->
-    <!-- Javascript files-->
+    
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
