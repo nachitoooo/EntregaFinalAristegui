@@ -13,7 +13,6 @@ class Blog(models.Model):
     imagen = models.ImageField(upload_to='blog_images/')
 
 
-
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     profile_image = models.ImageField(upload_to='profile_images/', blank=True, null=True)

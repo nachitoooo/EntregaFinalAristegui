@@ -6,34 +6,40 @@ from django.core.exceptions import PermissionDenied
 from django.contrib import messages  # Importa la biblioteca de mensajes
 from .models import CanalMensaje, CanalUsuario, Canal
 from django.http import HttpResponse, Http404, JsonResponse
-from .forms import FormMensajes
+from .forms import FormMensajes, SeleccionarDestinatarioForm
 from django.views.generic.edit import FormMixin
 from django.views.generic import View
 
 class Inbox(View):
     def get(self, request):
-        inbox = Canal.objects.filter(canalusuario__usuario__in=[request.user.id])
-        form = FormMensajes() 
+        inbox = Canal.objects.filter(
+            canalusuario__usuario__in=[request.user.id])
+        form = FormMensajes()
+        seleccionar_usuarios_form = SeleccionarDestinatarioForm()
 
         context = {
             "inbox": inbox,
-            "form": form,  
+            "form": form,
+            "seleccionar_usuarios": seleccionar_usuarios_form,
         }
 
         return render(request, 'inbox.html', context)
 
     def post(self, request):
-        form = FormMensajes(request.POST)
-        if form.is_valid():
-       
-            canal_id = form.cleaned_data.get('canal_id')
-            canal = Canal.objects.get(pk=canal_id)
-            mensaje = form.cleaned_data.get("mensaje")
-            usuario = request.user
-            CanalMensaje.objects.create(canal=canal, usuario=usuario, texto=mensaje)
+        seleccionar_usuarios_form = SeleccionarDestinatarioForm(request.POST)
 
+        if seleccionar_usuarios_form.is_valid():
+            destinatario = seleccionar_usuarios_form.cleaned_data['destinatario']
 
-        return redirect('inbox')
+            return redirect('detailms', username=destinatario.username)
+
+        inbox = Canal.objects.filter(
+            canalusuario__usuario__in=[request.user.id])
+        context = {
+            "inbox": inbox,
+            "seleccionar_usuarios": seleccionar_usuarios_form,
+        }
+        return render(request, 'inbox.html', context)
 
 class CanalFormMixin(FormMixin):
 	form_class =FormMensajes
@@ -53,25 +59,15 @@ class CanalFormMixin(FormMixin):
 			mensaje = form.cleaned_data.get("mensaje")
 			canal_obj = CanalMensaje.objects.create(canal=canal, usuario=usuario, texto=mensaje)
 			
-			if request.is_ajax():
-				return JsonResponse({
-
-					'mensaje':canal_obj.texto,
-					'username':canal_obj.usuario.username
-					}, status=201)
-
 			return super().form_valid(form)
 
 		else:
-
-			if request.is_ajax():
-				return JsonResponse({"Error":form.errors}, status=400)
-
+			
 			return super().form_invalid(form)
 
 
 class CanalDetailView(LoginRequiredMixin, DetailView):
-    template_name = 'Dm/canal_detail.html'
+    template_name = 'canal_detail.html'
     queryset = Canal.objects.all()
 
     def get_context_data(self, *args, **kwargs):
@@ -89,21 +85,17 @@ class CanalDetailView(LoginRequiredMixin, DetailView):
             canal = self.get_object()
             usuario = self.request.user
             mensaje = form.cleaned_data.get("mensaje")
-            CanalMensaje.objects.create(canal=canal, usuario=usuario, texto=mensaje)
-
-            if request.is_ajax():
-                # Si es una solicitud AJAX, devuelve una respuesta JSON
-                return JsonResponse({
-                    'mensaje': mensaje,
-                    'username': usuario.username
-                }, status=201)
+            CanalMensaje.objects.create(
+                canal=canal, usuario=usuario, texto=mensaje)
 
         return redirect('canal-detail', pk=kwargs['pk'])
 
 
 class DetailMs(LoginRequiredMixin, CanalFormMixin, DetailView):
 
-	template_name= 'Dm/canal_detail.html'
+	template_name = 'canal_detail.html'
+
+
 
 	def get_object(self, *args, **kwargs):
 

@@ -69,6 +69,8 @@
                                             {{ user.username }}
                                         </a>
                                         <li><a href="{% url 'logout' %}">Logout</a></li>
+                                        <li><a href="{% url 'inbox' %}">Inbox</a></li>
+
                                     </li>
                                     {% else %}
                                     <li> <a href="{% url 'login' %}">Login</a> </li>
@@ -89,9 +91,8 @@
                     </div>
                 </div>
             </div>
-            <!-- end header inner -->
+
     </header>
-    <!-- end header -->
 
     <div class="aboutbg">
         <div class="container">
