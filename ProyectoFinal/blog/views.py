@@ -96,3 +96,4 @@ def upload_avatar(request):
     else:
         profile_form = ProfileUpdateForm(instance=request.user.userprofile)
     return render(request, 'blog/home.html', {'profile_form': profile_form})
+

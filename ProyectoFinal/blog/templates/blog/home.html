@@ -59,7 +59,6 @@
                                     <li> <a href="{% url 'home' %}">Home</a> </li>
                                     <li> <a href="{% url 'album' %}">Albums</a> </li>
                                     <li> <a href="{% url 'about' %}">About</a> </li>
-                                    <li> <a href="{% url 'register'%}">Register</a> </li>
                                     {% if user.is_authenticated %}
                                     <li class="nav-item dropdown">
                                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -70,11 +69,14 @@
                                         </a>
                                         <li><a href="{% url 'logout' %}">Logout</a></li>
                                         <li><a href="{% url 'inbox' %}">Inbox</a></li>
+                                        <li><a href="{% url 'update_profile' %}">Actualizar perfil</a></li>
 
                                     </li>
                                     {% else %}
                                     <li> <a href="{% url 'login' %}">Login</a> </li>
+                                    <li> <a href="{% url 'register'%}">Register</a> </li>
                                     {% endif %}
+                                </nav>
                                 </ul>
                             </nav>
                         </div>
@@ -83,14 +85,7 @@
             </div>
         </div>
     </div>
-                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
-                        <form class="search">
-                            <input class="form-control" type="text" placeholder="Search">
-                            <button><img src="images/search_icon.png"></button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+                   
 
     </header>
 
@@ -99,7 +94,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="abouttitlepage">
-                        <h2>about</h2>
+                        <h2>Pagina de inicio del blog</h2>
                     </div>
                 </div>
             </div>
@@ -112,133 +107,44 @@
             <div class="row">
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                     <div class="for-box">
-                        <i><img src="icon/icon1.png" alt="icon"/></i>
-                        <h3>Custom Player</h3>
-                        <p>t is a long established fact that a reader will be distracted by the readable </p>
+                        <i><img src="{% static 'images/rq.jpg' %}" alt="icon" /></i>
+                        <h3>La polémica canción Rocket Queen</h3>
+                        <p>La letra de la canción es bastante sugestiva y provocadora, lo que la convierte en una de las pistas más controvertidas del álbum. La canción se centra en las experiencias sexuales y románticas de Axl Rose, lo que añade un toque de rebeldía y provocación característico de la banda.
+                        Musicalmente, "Rocket Queen" presenta un sonido crudo y poderoso, con riffs de guitarra intensos y un solo de guitarra impresionante de Slash. </p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                     <div class="for-box">
-                        <i><img src="icon/icon2.png" alt="icon"/></i>
-                        <h3>Easy customize</h3>
-                        <p>t is a long established fact that a reader will be distracted by the readable </p>
+                        <i><img src="{% static 'images/axlrose.jpg' %}" alt="icon" /></i>
+                        <h3>Polémica concierto Argentina 1992</h3>
+                        <p>La "Polemica Argentina Guns N' Roses" se refiere a un incidente que ocurrió durante el concierto de la banda en Buenos Aires, Argentina, en 1992. Durante el espectáculo, Axl Rose, el vocalista de Guns N' Roses, abandonó el escenario después de solo unas pocas canciones debido a problemas técnicos y la multitud reaccionó con enojo, causando disturbios. </p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                     <div class="for-box">
-                        <i><img src="icon/icon3.png" alt="icon"/></i>
-                        <h3>Music Playlist</h3>
-                        <p>t is a long established fact that a reader will be distracted by the readable </p>
+                        <i><img src="{% static 'images/novemberrain.jpg' %}" alt="icon" /></i>
+                        <h3>November Rain</h3>
+                        <p>La canción mas viral de los Guns N' Roses actualmente, es November Rain, perteneciente a el álbum Use your Ilussion I, contando con mas de 2080 Millones de reproducciones. La letra de "November Rain" es melancólica y trata sobre la soledad, la pérdida y la nostalgia. A lo largo de la canción, Axl Rose canta sobre la dificultad de mantener una relación y cómo las cosas pueden cambiar con el tiempo. La canción presenta un emocionante solo de guitarra interpretado por Slash, que es uno de los más memorables en la historia del rock.  </p>
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                     <div class="for-box">
-                        <i><img src="icon/icon4.png" alt="icon"/></i>
-                        <h3>Custom Gallery</h3>
-                        <p>t is a long established fact that a reader will be distracted by the readable </p>
+                        <i><img src="{% static 'images/perhaps.jpg' %}" alt="icon" /></i>
+                        <h3>GUNS N’ ROSES publica nuevo single, «Perhaps»</h3>
+                        <p>GUNS N’ ROSES Lanza Oficialmente su Nuevo Sencillo «Perhaps» y Prepara Terreno para un Nuevo Álbum
+                            El nuevo sencillo de GUNS N’ ROSES, «Perhaps», ha sido lanzado a las estaciones de radio en todo Estados Unidos.
+                            Respecto a cómo suena el nuevo material de GUNS N’ ROSES, Mayhue dijo: «Suena genial. Es mucho más orientado hacia ‘Appetite [For Destruction]’. Tenían muchas canciones. Cuando la banda entró originalmente y grabó ‘Appetite For Destruction’, creo que grabaron, como, 29 canciones. Entonces hay muchas otras canciones que quedaron que no llegaron al primer disco. Creo que solo hay 11 canciones en el primer disco». </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
     <!-- end music-box  -->
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 padding">
-                <div class="img-box">
-                    <figure><img src="images/musicbg.jpg" alt="img" /></figure>
-                </div>
-            </div>
-            <div class="col-xl-6 col-lg-12 col-md-12 col-sm-12 padding">
-                <div class="text-box">
-                    <div class="box">
-                        <i><img src="images/5.png"/></i>
-                        <h3>MEET OUR Music STARS</h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable
-                            <br> content of a page when looking at its layout. The point of using Lorem
-                            <br> content of a page when looking at its layout. The point of using Lorem</p>
 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!--  footer -->
-    <footr>
-        <div class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-12 width">
-                        <div class="address">
-                            <h3>Contact Us</h3>
-                            <ul class="locarion_icon">
-                                <li><img src="icon/1.png" alt="icon" />104 New York , USA</li>
-                                <li><img src="icon/2.png" alt="icon" />Phone : ( +71 5896547 )</li>
-                                <li><img src="icon/3.png" alt="icon" />Email : demo@email.com</li>
-
-                            </ul>
-
-                            <ul class="contant_icon">
-                                <li><img src="icon/fb.png" alt="icon" /></li>
-                                <li><img src="icon/tw.png" alt="icon" /></li>
-                                <li><img src="icon/lin(2).png" alt="icon" /></li>
-                                <li><img src="icon/instagram.png" alt="icon" /></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-12 width">
-                        <div class="address">
-                            <h3>Get In Touch</h3>
-                            <form>
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <input class="contactus" placeholder="Name" type="text" name="Name">
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <input class="contactus" placeholder="Phone" type="text" name="Email">
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <input class="contactus" placeholder="Email" type="text" name="Email">
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <textarea class="textarea" placeholder="Message" type="text" name="Message"></textarea>
-                                    </div>
-                                    <div class="col-sm-12">
-                                        <button class="send">Send</button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 width">
-                        <div class="address">
-                            <h3>New Music </h3>
-                            <div class="row">
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
-                                    <figure><img src="images/music1.jpg" /></figure>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
-                                    <figure><img src="images/music2.jpg" /></figure>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
-                                    <figure><img src="images/music3.jpg" /></figure>
-                                </div>
-                                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 ">
-                                    <figure><img src="images/music4.jpg" /></figure>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>© 2019 All Rights Reserved. <a href="https://html.design/">Free html Templates</a></p>
-            </div>
-        </div>
-    </footr>
+  
     <!-- end footer -->
     <!-- Javascript files-->
     <script src="js/jquery.min.js"></script>

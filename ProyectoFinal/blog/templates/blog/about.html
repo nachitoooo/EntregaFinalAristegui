@@ -54,30 +54,31 @@
                                 <nav class="main-menu">
                                     <ul class="menu-area-main">
                                         <li> <a href="{% url 'home' %}">Home</a> </li>
-                                        <li> <a href="blog.html">Blog</a> </li>
-                                        <li> <a href="{% url 'about' %}">about</a> </li>
+                                        <li> <a href="{% url 'album' %}">Albums</a> </li>
+                                        <li> <a href="{% url 'about' %}">About</a> </li>
                                         {% if user.is_authenticated %}
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            {% if user.profile.profile_image %}
-                                            <img src="{{ user.profile.profile_image.url }}" alt="{{ user.username }}" width="30" height="30" style="border-radius: 50%;">
-                                            {% endif %}
-                                            {{ user.username }}
-                                        </a>
-                                        <li><a href="{% url 'logout' %}">Logout</a></li>
-                                    </li>
-                                    {% else %}
-                                    <li> <a href="{% url 'login' %}">Login</a> </li>
-                                    {% endif %}
-                                </nav>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                {% if user.profile.profile_image %}
+                                                <img src="{{ user.profile.profile_image.url }}" alt="{{ user.username }}" width="30" height="30" style="border-radius: 50%;">
+                                                {% endif %}
+                                                {{ user.username }}
+                                            </a>
+                                            <li><a href="{% url 'logout' %}">Logout</a></li>
+                                            <li><a href="{% url 'inbox' %}">Inbox</a></li>
+                                            <li><a href="{% url 'update_profile' %}">Actualizar perfil</a></li>
+    
+                                        </li>
+                                        {% else %}
+                                        <li> <a href="{% url 'login' %}">Login</a> </li>
+                                        <li> <a href="{% url 'register'%}">Register</a> </li>
+                                        {% endif %}
+                                    </nav>
                             </div>
                         </div>
                     </div>
                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-2">
-                        <form class="search">
-                            <input class="form-control" type="text" placeholder="Buscar">
-                            <button><img src="{% static 'images/search_icon.png' %}"></button>
-                        </form>
+                       
                     </div>
                 </div>
             </div>
